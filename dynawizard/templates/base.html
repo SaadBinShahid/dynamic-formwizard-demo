@@ -1,0 +1,19 @@
+<!doctype html>
+{% load i18n staticfiles %}
+<html class="no-js" lang="{{ LANGUAGE_CODE }}">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{% block page_title %}{% trans 'Dynamic formwizard demo' %}{% endblock %}</title>
+        <meta name="description" content="{% trans 'Dynamic formwizard demo' %}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="{% static 'js/vendor/modernizr-2.8.3.min.js' %}"></script>
+        {% block additional_head %}{% endblock %}
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        {% block body %}{% endblock %}
+    </body>
+</html>
