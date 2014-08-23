@@ -4,7 +4,7 @@
 from collections import OrderedDict
 import logging
 
-from django.contrib.formtools.wizard.views import SessionWizardView
+from django.contrib.formtools.wizard.views import NamedUrlSessionWizardView
 from django.contrib.formtools.wizard.views import WizardView
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
@@ -17,8 +17,10 @@ from .forms import ContactForm2
 logger = logging.getLogger(__name__)
 
 
-class ContactWizard(SessionWizardView):
+class ContactWizard(NamedUrlSessionWizardView):
     template_name = 'demo/wizard.html'
+    url_name = 'contact_wizard'
+    done_step_name = 'done'
     initial_dict = {}
     instance_dict = {}
     condition_dict = {}
@@ -26,6 +28,8 @@ class ContactWizard(SessionWizardView):
     @classmethod
     def as_view(cls, *args, **kwargs):
         return super(WizardView, cls).as_view(*args, **kwargs)
+
+    # TODO get_form_initial(step)
 
     @property
     def form_list(self):
@@ -42,3 +46,4 @@ class ContactWizard(SessionWizardView):
 
 contact_wizard = ContactWizard.as_view()
 done = TemplateView.as_view(template_name='demo/done.html')
+home = TemplateView.as_view(template_name='demo/home.html')
