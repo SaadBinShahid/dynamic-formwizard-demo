@@ -41,9 +41,8 @@ class ContactWizard(NamedUrlSessionWizardView):
     def done(self, form_list, **kwargs):
         for form in form_list:
             logger.debug(u'{}: {}'.format(form.__class__.__name__, form.cleaned_data))
-        return HttpResponseRedirect(reverse('done'))
+        return HttpResponseRedirect(reverse('home'))
 
 
 contact_wizard = ContactWizard.as_view()
-done = TemplateView.as_view(template_name='demo/done.html')
 home = TemplateView.as_view(template_name='demo/home.html')
